@@ -16,4 +16,4 @@ https://github.com/lwong121/moment-timezone
 Moment Timezone is an add-on library to the popular Moment JavaScript library that enables users to parse and display dates for any timezone.
 
 **Who created the software, and who currently "maintains" it?** (Was it developed by a large company or an independent developer? Who seems to be in charge of approving changes to its code/architecture?)
-This codebase is maintained by us.
+Moment.js is created and developed by the moment.js team, with no detailed information of the developers found on the website. This codebase is maintained by us.
