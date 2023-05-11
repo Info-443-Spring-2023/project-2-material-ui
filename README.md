@@ -3,7 +3,7 @@
 
 Team Members: Jasper Wang, Justin Zeng, Sachi Figliolini, Lauren Wong
 
-https://github.com/lwong121/moment-timezone
+https://github.com/uwsachifig/info443moment.git
 
 # Checkpoint 1
 
@@ -17,4 +17,4 @@ Moment.js is a open-source JavaScript library that allows you to easily parse, v
 
 **Who created the software, and who currently "maintains" it?** (Was it developed by a large company or an independent developer? Who seems to be in charge of approving changes to its code/architecture?)
 
-
+Moment.js was created in 2011 in the moment team. The project is currently a legacy project in maintenance mode; therefore, in the team's words, "it is not dead, but it is indeed done". 
