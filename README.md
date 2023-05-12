@@ -3,18 +3,17 @@
 
 Team Members: Jasper Wang, Justin Zeng, Sachi Figliolini, Lauren Wong
 
-https://github.com/uwsachifig/info443moment.git
-
 # Checkpoint 1
 
-**Chosen Project:** Moment
-- Github Project: https://github.com/moment/moment
-- Documentation: https://momentjs.com/docs/
+**Forked Project:**
+https://github.com/lwong121/info-443-p2-material-ui
+
+**Chosen Project:** Material UI
+- Github Project: https://github.com/mui/material-ui
+- Documentation: https://mui.com/core/
 
 **What is the software system, and what does it do?** Give a short (a few sentences is fine) explanation from a user/consumer perspective.
 
-Moment.js is a open-source JavaScript library that allows you to easily parse, validate, manipulate, and display dates and times.
+Material UI is a open-source library offering various pre-built React components that implment Google's Material Design.
 
 **Who created the software, and who currently "maintains" it?** (Was it developed by a large company or an independent developer? Who seems to be in charge of approving changes to its code/architecture?)
-
-Moment.js was created in 2011 in the moment team. The project is currently a legacy project in maintenance mode; therefore, in the team's words, "it is not dead, but it is indeed done".
