@@ -17,3 +17,5 @@ https://github.com/lwong121/info-443-p2-material-ui
 Material UI is a open-source library offering various pre-built React components that implment Google's Material Design.
 
 **Who created the software, and who currently "maintains" it?** (Was it developed by a large company or an independent developer? Who seems to be in charge of approving changes to its code/architecture?)
+
+Founded by Olivier Tassinari, Open UI is a team responsible for the development and maintainance of material UI.
