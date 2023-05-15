@@ -14,7 +14,7 @@ https://github.com/lwong121/info-443-p2-material-ui
 
 **What is the software system, and what does it do?** Give a short (a few sentences is fine) explanation from a user/consumer perspective.
 
-Material UI is a open-source library offering various pre-built React components that implment Google's Material Design.
+Material UI is a open-source library offering various pre-built React components that implment Google's Material Design. It can be installed through `npm` or `yarn`.
 
 **Who created the software, and who currently "maintains" it?** (Was it developed by a large company or an independent developer? Who seems to be in charge of approving changes to its code/architecture?)
 
