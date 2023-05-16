@@ -18,4 +18,4 @@ Material UI is a open-source library offering various pre-built React components
 
 **Who created the software, and who currently "maintains" it?** (Was it developed by a large company or an independent developer? Who seems to be in charge of approving changes to its code/architecture?)
 
-Founded by Olivier Tassinari, Open UI is a team responsible for the development and maintainance of material UI.
+Founded by Olivier Tassinari, Open UI is a team responsible for the development and maintainance of material UI. They also allow community to also give feedback and improve documentation and fix bugs.
