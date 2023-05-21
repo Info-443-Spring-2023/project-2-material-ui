@@ -26,17 +26,36 @@ Founded by Olivier Tassinari and Matt Brookes, Open UI is a team responsible for
 
 ## Development View
 
-### List of Components
-***Note:** All details about the components came from [^1], [^2], [^3], and [^4].
+### List of Packages and Components
 
-**Core Modules:**
-- @mui/material – Material UI is a React component library containing the main components that implement the Material Design guidelines. This is the main component we will be focusing on in this project.
+The following lists contain names and descriptions of the main packages and components included in the Material UI Core repository. Material UI Core is a large repository that contains many different packages for various projects and shared functions [^3]. So the first list aims to describe these high-level packages to provide a better sense of the organization of the repository. The second list then dives deeper into the @mui/material package that contains the main MUI React components by describing the them at a high-level and listing related components.
+
+***Note:** All details about the packages and components came from [^1], [^2], [^3], and [^4].
+
+**MUI Core Packages:**
+- @mui/material – Material UI is a React component library containing the main components that implement the Material Design guidelines. This is the main package we will be focusing on in this project.
 - @mui/base – Base UI is a React component library containing the unstyled and basic versions components to allow for more customization
 - @mui/joy – Joy UI is an alternative React component library to @mui/material containing components that implement MUI’s own design principles instead of the ones from Material Design guidelines
 - @mui/system – MUI System provides a collection of CSS utilities that can allow for more custom designs
   - Styled engines: @mui/styled-engine and @mui/styled-engine-sc  – These packages help create a consistent style for components and allows users to further customize them according to their needs
+- @mui/codemod – Contains the codemod scripts used for Material UI
+- @mui/core-downloads-tracker
+- @mui/docs – Contains the building blocks used for Material UI documentation
+- @mui/envinfo – Prints information on current environment related to the Material UI packages to the console
+- @mui/icons-material – Contains Google Material Icons that have been converted to SvgIcon components
+- @mui/material-next – Contains components that are currently being improved to replace the @mui/material components
+- @mui/lab – Contains components that are currently being developed and tested, so they are not yet ready for actual use as an official MUI component
+- @mui/private-theming - Contains the main React theme context that is shared with @mui/styles and @mui/material
+- @mui/styles - Contains the legacy styling solution for Material UI and is no longer in use
+- @mui/types - Contains the utility types used by MUI
+- @mui/utils - Contains the shared utilities that are used by MUI packages
+- eslint-plugin-material-ui – Contains the custom eslint rules used for Material UI
+- Typescript-to-proptypes - Contains an API to convert TypeScript definitions to PropTypes using the TypeScript Compiler API
+- Waterfall - Contains a set of utility functions for handling async/await
 
-**Material UI Core Components:**
+
+**Material UI Components in @mui/material:**
+
 Inputs:
 - Autocomplete – Creates a text input box with built-in autocomplete functionality that shows suggestions on a panel
 - Button – Creates a button
@@ -202,15 +221,13 @@ Material UI has many different tests including unit tests, integration tests, en
 
 ### Architectural Style
 
-WORK IN PROGRESS
+Material UI is a library that provides users with a bunch of prebuilt React components that developers can use to build UIs. These components were designed to be independent, flexible, and reusable building blocks that are easy to combine and interchange to create more complex UI components. So they follow and support a Component-Based architectural style, where each component is clearly defined to handle a specific goal/task or represent an element of the UI. This helps support the separation of concerns, code reusability, modularity, extensibility, and cohesion within the UI of an app using their components [^8].
 
-Material UI is a library that provides its users with a bunch of prebuilt React components that developers can use to build the user interface of any application. These components were designed to be independent and reusable building blocks that are easy to combine for more complex UI components. So they follow a Component-Based architectural style, where each component is clearly defined to handle a specific goal/task and represent an element of the UI. This helps support the separation of concerns, code reusability, modularity, extensibility, and cohesion [^8].
+Since it is just a library of components, Material UI does not really apply any other architectural styles on its own. But the MUI components can be used within other system’s architectures that involve a clearly defined presentation or a UI component, such as the model-view-controller (MVC) architecture and a layered architecture.
 
-MUI components can also be used within other system’s architectures that involve a clearly defined presentation or a UI component, such as the model-view-controller (MVC) architecture and a layered architecture.
+In an MVC architecture, the MUI components would act as the View that the user sees and interacts with. If an event handler is applied to the View, the View will be responsible for: (1) keeping the Controller updated on the user’s actions, (2) displaying information to the user according to updates it receives from the Controller, and (3) making additional requests for relevant data and updating accordingly when it gets notified by the Model about changes [^9]. Then as usual, the Controller will be responsible for handling the input from the user and translating it to the rest of the system. The Model will be responsible for the core functionality and data-related logic.
 
-In an MVC architecture, the MUI components would act as the View that the user sees and interacts with. If an event handler is applied to the View, the View will be responsible for keeping the Controller updated on the user’s actions, displaying information to the user according to updates it receives from the Controller, making additional requests for relevant data and updating accordingly when it gets notified by the Model about changes.
-
-Similarly, in a layered architecture, the MUI components would be part of the presentation layer. This layer is responsible for handling all of the user interactions with the application and communicating information between the logic layer and the user.
+Similarly, in a layered architecture, the MUI components would be part of building the UI in the presentation layer. This layer is responsible for handling all of the user interactions with the application and communicating information between the logic layer and the user.
 
 ### Software Design Patterns:
 
@@ -226,7 +243,7 @@ The composite design pattern is a pattern that lets you use tree structures to r
 
 Material UI uses the composite design pattern to create their components because they let you treat all individual objects and object compositions the same. For example, to create a `List` component you can compose a list by passing in various `ListItem`s as children. These list items can have any number of other components contained within it like a `ListItemAvatar`, `ListItemText`, or `ListItemButton` to create a tree hierarchy. But despite the fact that there could be many different subtrees with different structures in the list, the `List` component will still treat all of its `ListItem`s as an individual object instead of a composition of multiple different objects.
 
-Material UI also does a very good job in creating components that support other systems using the composite design pattern. This is because they prioritize creating consistent and basic low-level components so that they can fully maximize the composition capabilities of their components [^7]. (Provide an example later).
+Material UI also does a very good job in creating components that support other systems using the composite design pattern. This is because they prioritize creating consistent and basic low-level components so that they can fully maximize the composition capabilities of their components [^7].
 
 
 ## Architectural Assessment
@@ -259,3 +276,5 @@ Add later...
 [^7]: Documentation on how they created the API: https://mui.com/material-ui/guides/api/
 
 [^8]: Component-Based Architecture: https://www.mendix.com/blog/what-is-component-based-architecture/#:~:text=Component%20architecture%20is%20a%20framework,requiring%20modification%20of%20other%20components.
+
+[^9]: MVC Architecture: https://learning.oreilly.com/library/view/pattern-oriented-software-architecture/9781118725269/OEBPS/9781118725269_c02a.htm#:-:text=Model-View-Controller,interface%20and%20the%20model.
