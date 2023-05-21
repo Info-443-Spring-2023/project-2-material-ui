@@ -27,7 +27,7 @@ Founded by Olivier Tassinari and Matt Brookes, Open UI is a team responsible for
 ## Development View
 
 ### List of Components
-*All details about the components came from[^1], [^2], [^3], and [^4].
+***Note:** All details about the components came from [^1], [^2], [^3], and [^4].
 
 **Core Modules:**
 - @mui/material – Material UI is a React component library containing the main components that implement the Material Design guidelines. This is the main component we will be focusing on in this project.
@@ -75,7 +75,7 @@ Data Display:
 - Divider – Creates a thin line to group or separate content
 - Icon – Acts as a wrapper for custom font icons
   - SvgIcon
-  - Material Icons
+- Material Icons - Basic icons provided by Material UI
 - List – Creates a list of text or images
   - ListItem
   - ListItemAvatar
@@ -185,8 +185,6 @@ Utils:
   - Zoom – Transition wrapper component that makes a component expand outwards
 - useMediaQuery() – CSS media query hook that allows components to be rendered depending on whether the given query matches
 
-
-
 **Your report will need to describe the system's approach to testing and configuration. How is automated testing integrated into the code (if at all)? What infrastructure or architecture is needed to enable this testing? Considering how you would "run the tests" and what that would do is a good place to start. Similarly, is there any particular configuration work needed when building or using this system (including e.g., use of particular git branches or tags/labeling)?**
 
 Material UI has many different tests including unit tests, integration tests, end to end (e2e) tests, and visual regression tests. The test folder in root contains e2e tests and visual regression tests while the package folder contains a unit and integration test for each component. For testing, MUI uses tools like @testing-library/react, chai, sinon, mocha, karma, playwright, jsdom, and enzyme. Automated testing is integrated in its visual regression tests where they use playwright to iterate over fixtures and take a screenshot. Each fixture can be described as a rendered UI. This tests the rendering of React components. End to end testing also utilizes playwright and is similar to the visual regression tests where it looks at a single fixture. Focusing on building this system, to add a unit test or integration test, run `yarn t TheUnitInQuestion`, implement the tested behavior, then open a PR  once the test passes. A particular configuration work when adding to this system is that you need to follow. Starting with forking then cloning the repo, then the contributor needs to create a new topic branch, then make a Pull Request (PR). Details here: https://github.com/mui/material-ui/blob/master/CONTRIBUTING.md  To install the mui package, you can do `npm install @mui/material @emotion/react @emotion/styled`.  To run tests, use `yarn test:unit` or `yarn test:unit –grep ComponentName` for unit tests, `yarn docs:api` for checking code formats and lints the repo, `yarn test:karma` to run unit tests in multiple browsers via BrowserStack. To deploy, go to deploy/netlify to render a preview of the docs with your changes. `yarn docs:build` or `yarn docs:export1 usually fails locally. `codecov/project` monitors coverage of the tests.
@@ -202,18 +200,48 @@ Material UI has many different tests including unit tests, integration tests, en
 
 ## Identify Styles & Patterns Used
 
-**Software Design Patterns: Your will identify 4 or more design patterns (e.g., OOP Patterns) that are are used in the implementation of your system. (You should find at least 3 different patterns—a single pattern used in 2 different places can both be counted in the required 4). Your report will need to name each pattern being used, then provide an explanation of how the system uses that pattern. Don't just say where the pattern is; explain how this particularly implementation fits the requirements of the pattern. The goal is to demonstrate you understand the pattern's structure and usage.**
+### Architectural Style
+
+WORK IN PROGRESS
+
+Material UI is a library that provides its users with a bunch of prebuilt React components that developers can use to build the user interface of any application. These components were designed to be independent and reusable building blocks that are easy to combine for more complex UI components. So they follow a Component-Based architectural style, where each component is clearly defined to handle a specific goal/task and represent an element of the UI. This helps support the separation of concerns, code reusability, modularity, extensibility, and cohesion [^8].
+
+MUI components can also be used within other system’s architectures that involve a clearly defined presentation or a UI component, such as the model-view-controller (MVC) architecture and a layered architecture.
+
+In an MVC architecture, the MUI components would act as the View that the user sees and interacts with. If an event handler is applied to the View, the View will be responsible for keeping the Controller updated on the user’s actions, displaying information to the user according to updates it receives from the Controller, making additional requests for relevant data and updating accordingly when it gets notified by the Model about changes.
+
+Similarly, in a layered architecture, the MUI components would be part of the presentation layer. This layer is responsible for handling all of the user interactions with the application and communicating information between the logic layer and the user.
+
+### Software Design Patterns:
+
+Your will identify 4 or more design patterns (e.g., OOP Patterns) that are are used in the implementation of your system. (You should find at least 3 different patterns—a single pattern used in 2 different places can both be counted in the required 4). Your report will need to name each pattern being used, then provide an explanation of how the system uses that pattern. Don't just say where the pattern is; explain how this particularly implementation fits the requirements of the pattern. The goal is to demonstrate you understand the pattern's structure and usage.
 
  Decorator Pattern - involves dynamically adding behaviors or responsibilities to an object by wrapping it with another object of the same interface.
  In Material-UI, High order components or HOCs are used to inject certain features or behaviors into components, such as handling theming, managing state, or providing access to certain context or data. These HOCs can be applied to existing components to extend their capabilities without modifying their underlying implementation. This promotes code reusability and modularity by separating concerns and allowing components to be composed with different functionalities. While the concept of enhancing components through HOCs shares some similarities with the Decorator Pattern, it is important to note that the implementation in Material-UI may not strictly adhere to the full structure and principles of the Decorator Pattern.
+
+
+### Composite Design pattern
+
+The composite design pattern is a pattern that lets you use tree structures to represent hierarchies and treat both individual objects and object compositions the same [^5][^6].
+
+Material UI uses the composite design pattern to create their components because they let you treat all individual objects and object compositions the same. For example, to create a `List` component you can compose a list by passing in various `ListItem`s as children. These list items can have any number of other components contained within it like a `ListItemAvatar`, `ListItemText`, or `ListItemButton` to create a tree hierarchy. But despite the fact that there could be many different subtrees with different structures in the list, the `List` component will still treat all of its `ListItem`s as an individual object instead of a composition of multiple different objects.
+
+Material UI also does a very good job in creating components that support other systems using the composite design pattern. This is because they prioritize creating consistent and basic low-level components so that they can fully maximize the composition capabilities of their components [^7]. (Provide an example later).
 
 
 ## Architectural Assessment
 
 Open/Close Principle (OCP) - Material-UI adheres to the Open/Closed Principle by providing an extensible framework of reusable components that can be customized and extended through props. Instead of modifying the internal implementation, developers can leverage props to tailor the appearance, behavior, and functionality of components to fit their specific requirements. This approach promotes code reusability, maintainability, and modularity, allowing for the addition of new features without modifying the existing codebase.
 
+### Single Responsibility Principle (SRP)
+
+Material UI follows the Single Responsibility Principle by ensuring that each of the React components they provide have one and only one well-defined purpose within the system. The MUI components are broken down into smaller and more basic components to achieve a single goal or represent a certain element in the user interface [^7]. They also provide clear and consistent interfaces so that developers can easily understand what each component does and how they can use it. As a result, this type of approach helps to make the components more modular so that they are easier to reuse and combine to create more complex and customized components. It also helps make the code to maintain, understand, and improve in the future.
+
+Examples: Instead of having a single `Card` component handle all the the elements involved with creating a card, they break it down into smaller individual components such as the `CardHeader`, `CardContent`, and `CardMedia` to represent different parts of the content displayed on a card. This can be further extended by combining it with other components like `Typography` and `Collapse` to create even more complex UI components.
+
 ## System Improvement
 
+Add later...
 
 ## Footnotes
 [^1]: Component API available at: https://mui.com/
@@ -223,3 +251,11 @@ Open/Close Principle (OCP) - Material-UI adheres to the Open/Closed Principle by
 [^3]: Core packages offered by Material UI: https://mui.com/blog/mui-product-comparison/
 
 [^4]: Material UI github packages: https://github.com/mui/material-ui/tree/master/packages
+
+[^5]: Composite Design Pattern: https://refactoring.guru/design-patterns/composite
+
+[^6]: Composite Design Pattern: https://learning.oreilly.com/library/view/design-patterns-elements/0201633612/ch04.html#:-:text=Object%20Structural%3A%20Composite
+
+[^7]: Documentation on how they created the API: https://mui.com/material-ui/guides/api/
+
+[^8]: Component-Based Architecture: https://www.mendix.com/blog/what-is-component-based-architecture/#:~:text=Component%20architecture%20is%20a%20framework,requiring%20modification%20of%20other%20components.
