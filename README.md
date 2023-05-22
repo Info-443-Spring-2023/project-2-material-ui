@@ -204,11 +204,35 @@ Utils:
   - Zoom – Transition wrapper component that makes a component expand outwards
 - useMediaQuery() – CSS media query hook that allows components to be rendered depending on whether the given query matches
 
+
+**Source Code Structure**
+- Material-UI is a popular React UI framework that implements Google's Material Design. It includes a variety of pre-built components like buttons, cards, dialogs, forms, and more, making it easier to build beautiful and consistent interfaces.
+- /packages: The Material-UI codebase is organized into packages, which are each responsible for different aspects of the framework. For example, there might be separate packages for core components, system utilities, and lab components (components that are still being tested and not yet fully stable).
+- 1.1. /material-ui: This directory usually contains the core of the library - the React components. These components include Buttons, Cards, Dialogs, etc. They are typically organized into their respective folders.
+- 1.2. /material-ui-lab: This is where newer components are tested before they are moved to the core package.
+- 1.3. /material-ui-system: This package contains utility functions and helpers for style functions.
+- 1.4. /material-ui-utils: This is a collection of utility modules required by Material-UI components.
+- /docs: This directory contains the source code for the Material-UI documentation. The documentation is itself a showcase of Material-UI components and serves as a valuable resource for developers learning how to use the framework.
+- /test: This is where all the test files reside. The tests ensure that changes to the code do not break existing functionality.
+- /examples: This directory contains example projects using Material-UI.
+- Root Files: At the root of the project, you might find configuration files for various tools such as Babel, ESLint, Prettier, etc., used for transpiling, linting, and formatting the code respectively. You would also find the package.json file which lists all the project dependencies.
+- /scripts: This directory would typically contain build scripts, test scripts, and possibly scripts for generating new components or other code.
+- Other files including README.md, SECURITY.md still need further analysis and will be implemented in the next updates.
+
+
+
 **Your report will need to describe the system's approach to testing and configuration. How is automated testing integrated into the code (if at all)? What infrastructure or architecture is needed to enable this testing? Considering how you would "run the tests" and what that would do is a good place to start. Similarly, is there any particular configuration work needed when building or using this system (including e.g., use of particular git branches or tags/labeling)?**
 
 Material UI has many different tests including unit tests, integration tests, end to end (e2e) tests, and visual regression tests. The test folder in root contains e2e tests and visual regression tests while the package folder contains a unit and integration test for each component. For testing, MUI uses tools like @testing-library/react, chai, sinon, mocha, karma, playwright, jsdom, and enzyme. Automated testing is integrated in its visual regression tests where they use playwright to iterate over fixtures and take a screenshot. Each fixture can be described as a rendered UI. This tests the rendering of React components. End to end testing also utilizes playwright and is similar to the visual regression tests where it looks at a single fixture. Focusing on building this system, to add a unit test or integration test, run `yarn t TheUnitInQuestion`, implement the tested behavior, then open a PR  once the test passes. A particular configuration work when adding to this system is that you need to follow. Starting with forking then cloning the repo, then the contributor needs to create a new topic branch, then make a Pull Request (PR). Details here: https://github.com/mui/material-ui/blob/master/CONTRIBUTING.md  To install the mui package, you can do `npm install @mui/material @emotion/react @emotion/styled`.  To run tests, use `yarn test:unit` or `yarn test:unit –grep ComponentName` for unit tests, `yarn docs:api` for checking code formats and lints the repo, `yarn test:karma` to run unit tests in multiple browsers via BrowserStack. To deploy, go to deploy/netlify to render a preview of the docs with your changes. `yarn docs:build` or `yarn docs:export1 usually fails locally. `codecov/project` monitors coverage of the tests.
 
 ## Applied Perspective
+
+**Detail which concerns are relevant to your particular system—how does your perspective apply to your chosen software? You should use the listed concerns in the course text as a starting point (you don't need to address all of the concerns in the book; pick 2 or 3 most relevant ones and discuss those explicitly).**
+ - Evolution: Magnitude/dimensions of change: Since its creation, Material-UI has undergone significant changes. The development team has made updates to improve the library's performance, features, and maintainability. Some of these changes include transitions from class-based to functional components and Hooks and incorporation of TypeScript, reflecting the evolution in the broader JavaScript ecosystem. Likelihood/timescale for change: Material-UI, as an open-source project, is updated frequently. Looking at the project’s history, major versions have been released approximately every two years. The project follows semantic versioning, which helps users to anticipate the impact of updates. Changes driven by external factors: The primary external factor driving changes in Material-UI is the development of React and JavaScript as a whole. Changes in the underlying technologies necessitate updates in Material-UI to maintain compatibility and to leverage new features and improvements. User feedback and trends in web design also play a role in shaping the library's evolution.
+- Security - further implementation needed.11
+- Performance - further implementation needed.
+
+
 
 **Perform some of the activities mentioned to "apply the perspective". This will often involve analyzing, diagramming, documenting, or assessing some aspect of the system or perspective. The exact format of this section will depend on your specific and chosen activities. Note that an analysis activity can overlap with the discussion of a concern. Your report should include around 2 activities (depending on their size).**
 * For example, from an Evolution perspective, you might "Characterize the Evolution Needs" and "Assess the Current Ease of Evolution".
@@ -216,6 +240,8 @@ Material UI has many different tests including unit tests, integration tests, en
 1. Usability Evaluation: Conduct a usability evaluation of specific Material-UI components or the overall UI design. This can involve tasks such as heuristic evaluations, cognitive walkthroughs, or usability testing with representative users. The goal is to identify any usability issues, pain points, or areas for improvement in terms of user interaction, navigation, visual design, or responsiveness.
 
 2. User Flow Analysis: Analyze the user flows and interactions within the Material-UI components used in your application. Identify the key user tasks, actions, and navigation patterns. Create user flow diagrams or storyboards to visualize the sequences of screens and interactions, evaluating the ease of use and clarity of the user journey.
+
+3. 
 
 ## Identify Styles & Patterns Used
 
@@ -235,6 +261,9 @@ Your will identify 4 or more design patterns (e.g., OOP Patterns) that are are u
 
  Decorator Pattern - involves dynamically adding behaviors or responsibilities to an object by wrapping it with another object of the same interface.
  In Material-UI, High order components or HOCs are used to inject certain features or behaviors into components, such as handling theming, managing state, or providing access to certain context or data. These HOCs can be applied to existing components to extend their capabilities without modifying their underlying implementation. This promotes code reusability and modularity by separating concerns and allowing components to be composed with different functionalities. While the concept of enhancing components through HOCs shares some similarities with the Decorator Pattern, it is important to note that the implementation in Material-UI may not strictly adhere to the full structure and principles of the Decorator Pattern.
+
+ Factory Pattern - This pattern is used in the styles portion of the system. Material-UI needs to create styles that can be easily tweaked based on themes, props, and states. To solve this problem, Material-UI uses a factory function to create styles. In essence, the function takes a theme and returns a style object that depends on that theme. This effectively allows the creation of custom styles based on different themes using the same factory function.
+
 
 
 ### Composite Design pattern
