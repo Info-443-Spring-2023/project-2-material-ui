@@ -239,9 +239,25 @@ Material UI has many different tests including unit tests, integration tests, en
 
 1. Usability Evaluation: Conduct a usability evaluation of specific Material-UI components or the overall UI design. This can involve tasks such as heuristic evaluations, cognitive walkthroughs, or usability testing with representative users. The goal is to identify any usability issues, pain points, or areas for improvement in terms of user interaction, navigation, visual design, or responsiveness.
 
-2. User Flow Analysis: Analyze the user flows and interactions within the Material-UI components used in your application. Identify the key user tasks, actions, and navigation patterns. Create user flow diagrams or storyboards to visualize the sequences of screens and interactions, evaluating the ease of use and clarity of the user journey.
+**Activity 1: Usability Evaluation of Material UI's Architecture**
 
-3. 
+As Rozanski mentions in their book, the usability perspective focuses on evaluating "the ease with which people who interact with the system can work effectively" [^10]. In most cases, this perspective would be focused on the end users and the design of the UI itself. But since Material UI is a library containing pre-built React UI components, our discussion will mostly focus on the usability of the library for developers and how the system's architecture supports usability. Specifically, we will consider how their architecture makes it easier/harder and more/less effective for developers to integrate the MUI components into their own React apps.
+
+- They provide clear and easy-to-follow documentation on their web page to describe each component in their API, their props, their use cases, demos of how to use the components, and general guidelines [^1].
+  - This documentation on the design and usage does not really relate to the architecture of the system. But it is still an important element that contributes to the usability of their MUI components for developers because it ensures consistency.
+
+- They strictly follow a set of rules for the design of their API and they clearly define them in their documentation [^7]. For example, they always try to use the `children` prop to do composition with components. They also try to maintain consistent naming conventions for all props and establish standards for how the components handle certain props that are passed in. This is important to ensure consistency in the design of their component API, which makes it easier for developers to understand and use the MUI components.
+
+- They designed their MUI components to adhere to Google's Material Design Principles. This ensures that they follow a widely accepted standard within the design community that aligns with the needs of the users and provide known and tested solutions for certain design problems and contexts. It also helps them maintain consistency in and simplify communication about their API design, documentation, and component designs because it is based on the standard set of concepts described in the design principles and it relies on designs that the developers and users would expect, which could be particularly useful for developers already somewhat familiar with the design principles. A good example of this is their responsive UI components that help developers align the designs of their applications with the responsive layouts defined by Material Design [^11].
+  - Helps them avoid two of the common problems and pitfalls described by Rozanski in [^10]: failing to bring in non-IT professionals like designers and failing to comply with strict guidelines.
+
+- They follow a component-based architecture (more information in the architectural styles section). So they focus on encapsulating parts of the UI into independent, reusable, and fairly customizable components that can be reused and re-combined to create more complex components. This is important because it helps them keep code related to different elements of the UI separate and consistent, which makes it more maintainable and usable for developers who want to quickly and effectively get their app up and running.
+  - Helps developers follow the main architectural principle that Rozanski highlights in [^10], which is to keep the implementation of the interface separate from the functional processing so that it is easier to make changes quickly and easily in the future.
+
+Though they do provide extensive documentation and guidelines on how to use the API and the overall architecture is based on common patterns and styles, it is clear that many of it has been designed with the assumption that the developers already have some background knowledge. In particular, they assume that developers using the library are familiar working with React, component-based architectures, design principles, and common programming concepts. So it might prove to be challenging to use for new developers with less expertise and experience to work with initially, which is one of the common problems that Rozanski points out in [^10].
+
+
+2. User Flow Analysis: Analyze the user flows and interactions within the Material-UI components used in your application. Identify the key user tasks, actions, and navigation patterns. Create user flow diagrams or storyboards to visualize the sequences of screens and interactions, evaluating the ease of use and clarity of the user journey.
 
 ## Identify Styles & Patterns Used
 
@@ -307,3 +323,7 @@ Add later...
 [^8]: Component-Based Architecture: https://www.mendix.com/blog/what-is-component-based-architecture/#:~:text=Component%20architecture%20is%20a%20framework,requiring%20modification%20of%20other%20components.
 
 [^9]: MVC Architecture: https://learning.oreilly.com/library/view/pattern-oriented-software-architecture/9781118725269/OEBPS/9781118725269_c02a.htm#:-:text=Model-View-Controller,interface%20and%20the%20model.
+
+[^10]: Usability Perspective: https://learning.oreilly.com/library/view/software-systems-architecture/9780132906135/ch29.html#:-:text=The%20Usability%20Perspective
+
+[^11]: Responsive UI Components: https://mui.com/material-ui/guides/responsive-ui/
