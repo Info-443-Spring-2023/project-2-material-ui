@@ -275,10 +275,12 @@ Similarly, in a layered architecture, the MUI components would be part of buildi
 
 Your will identify 4 or more design patterns (e.g., OOP Patterns) that are are used in the implementation of your system. (You should find at least 3 different patterns—a single pattern used in 2 different places can both be counted in the required 4). Your report will need to name each pattern being used, then provide an explanation of how the system uses that pattern. Don't just say where the pattern is; explain how this particularly implementation fits the requirements of the pattern. The goal is to demonstrate you understand the pattern's structure and usage.
 
- Decorator Pattern - involves dynamically adding behaviors or responsibilities to an object by wrapping it with another object of the same interface.
+ ### Decorator Pattern
+ Decorator Pattern involves dynamically adding behaviors or responsibilities to an object by wrapping it with another object of the same interface.
  In Material-UI, High order components or HOCs are used to inject certain features or behaviors into components, such as handling theming, managing state, or providing access to certain context or data. These HOCs can be applied to existing components to extend their capabilities without modifying their underlying implementation. This promotes code reusability and modularity by separating concerns and allowing components to be composed with different functionalities. While the concept of enhancing components through HOCs shares some similarities with the Decorator Pattern, it is important to note that the implementation in Material-UI may not strictly adhere to the full structure and principles of the Decorator Pattern.
 
- Factory Pattern - This pattern is used in the styles portion of the system. Material-UI needs to create styles that can be easily tweaked based on themes, props, and states. To solve this problem, Material-UI uses a factory function to create styles. In essence, the function takes a theme and returns a style object that depends on that theme. This effectively allows the creation of custom styles based on different themes using the same factory function.
+ ### Factory Pattern
+ This pattern is used in the styles portion of the system. Material-UI needs to create styles that can be easily tweaked based on themes, props, and states. To solve this problem, Material-UI uses a factory function to create styles. In essence, the function takes a theme and returns a style object that depends on that theme. This effectively allows the creation of custom styles based on different themes using the same factory function.
 
 
 
@@ -293,7 +295,8 @@ Material UI also does a very good job in creating components that support other 
 
 ## Architectural Assessment
 
-Open/Close Principle (OCP) - Material-UI adheres to the Open/Closed Principle by providing an extensible framework of reusable components that can be customized and extended through props. Instead of modifying the internal implementation, developers can leverage props to tailor the appearance, behavior, and functionality of components to fit their specific requirements. This approach promotes code reusability, maintainability, and modularity, allowing for the addition of new features without modifying the existing codebase.
+### Open/Close Principle (OCP)
+Material-UI adheres to the Open/Closed Principle by providing an extensible framework of reusable components that can be customized and extended through props. Instead of modifying the internal implementation, developers can leverage props to tailor the appearance, behavior, and functionality of components to fit their specific requirements. This approach promotes code reusability, maintainability, and modularity, allowing for the addition of new features without modifying the existing codebase.
 
 ### Single Responsibility Principle (SRP)
 
@@ -303,7 +306,10 @@ Examples: Instead of having a single `Card` component handle all the the element
 
 ## System Improvement
 
-Add later...
+Around 4-5 refactoring steps (at the scope defined by Martin Links to an external site). For example, you might apply Extract Function a couple of times, Move Functions, or even Parameterize Functions. This is probably the easiest approach, and is most relevant to the architecture of the project.
+A larger reorganization (e.g., at the module level—breaking up a module into smaller pieces, or moving functionality between modules) can "count double" in terms of refactorings. So doing 2-3 of those would be sufficient.
+You will need to justify why each refactoring is needed and an improvement on the architecture. Consider perhaps places that the system could better follow the design principles you discussed in the previous section.
+
 
 ## Footnotes
 [^1]: Component API available at: https://mui.com/
