@@ -311,6 +311,85 @@ A larger reorganization (e.g., at the module level—breaking up a module into s
 You will need to justify why each refactoring is needed and an improvement on the architecture. Consider perhaps places that the system could better follow the design principles you discussed in the previous section.
 
 
+### Bug Fix: [Stack] misalignment
+**Github Issue:** https://github.com/mui/material-ui/issues/37381
+
+**Bug Fix Commit:** https://github.com/lwong121/info-443-p2-material-ui/commit/61c77cac69f43aa6a61a4e3ed5129905abf169ac
+
+**Bug Description:**
+
+The original issue on github mentioned that the elements (in this case the `FormControlLabel` components) in the stack were not properly aligned and there was additional space in front of the first switch in the stack. But after inspecting the elements further, the margin of the first element was actually shifted to the left by 11px while all of the other elements were aligned on a 0 margin. So there seemed to be some inconsistency with how they were applying the styles to each of the child elements of the stack.
+
+Current alignment issue:
+
+![alignment bug](img/bug-fix-issue.jpg)
+
+```
+// App.cs
+<Stack direction="column" spacing={1}>
+  <FormControlLabel
+    value="Auto Seek"
+    control={<Switch color="primary" />}
+    label="Auto skip 1"
+  />
+  <FormControlLabel
+    value="Auto Seek"
+    control={<Switch color="primary" />}
+    label="Auto skip 2"
+  />
+  <FormControlLabel
+    value="Auto Seek"
+    control={<Switch color="primary" />}
+    label="Auto skip 3"
+  />
+</Stack>
+```
+
+**Background:**
+
+In the `Stack.js` file included in the `@mui/material` package, they call the `createStack()` function to create a Stack component. This function is defined in the `createStack.tsx` file in the `@mui/system` package, where they define the `StackRoot` component (acts as the base component for the stack with all the defaults) that is created using the `defaultCreateStyledComponent()` function. That function then takes in a `style()` function to create styles for all the child elements of the stack component using the current state of the Stack (defined in `ownerState`). In the `style()` function, they define another function called `styleFromPropValue()` to generate styles for each child element. Here, it applies a `margin: 0` and additional margins based on the specified direction from the user (in this case `"column"`).
+
+```
+// createStack.tsx
+const styleFromPropValue = (propValue: string | number | null, breakpoint?: Breakpoint) => {
+  ...
+  return {
+    '& > :not(style) + :not(style)': {
+      margin: 0,
+      [`margin${getSideFromDirection(
+        breakpoint ? directionValues[breakpoint] : ownerState.direction,
+      )}`]: getValue(transformer, propValue),
+    },
+  };
+};
+```
+
+**Solution:**
+
+The cause of this issue was the CSS selector `'& > :not(style) + :not(style)'` that applied to all direct child elements apart from the first non-`style` child element and any `style` elements. So the solution was to make the `margin:0` CSS rule apply to all direct non-`style` child elements using the `'& > :not(style)'` selector and have the other direction-dependent margin CSS rule apply to all elements apart from the first element using the same `'& > :not(style) + :not(style)'` selector.
+
+```
+// createStack.tsx
+const styleFromPropValue = (propValue: string | number | null, breakpoint?: Breakpoint) => {
+  ...
+  return {
+    '& > :not(style)': {
+      margin: 0,
+    },
+    '& > :not(style) + :not(style)':{
+      [`margin${getSideFromDirection(
+        breakpoint ? directionValues[breakpoint] : ownerState.direction,
+      )}`]: getValue(transformer, propValue),
+    },
+  };
+};
+```
+
+Result from change:
+
+![alignment bug solution](img/bug-fix-result.jpg)
+
+
 ## Footnotes
 [^1]: Component API available at: https://mui.com/
 
