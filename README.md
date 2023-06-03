@@ -389,6 +389,9 @@ Result from change:
 
 ![alignment bug solution](img/bug-fix-result.jpg)
 
+The `Stack.test.js` file in the `@mui/system` package was also updated to make sure the changes made are correct and can be tested in the future. All tests for styling the stack component pass.
+
+![alignment bug test cases passing](img/bug-fix-tests.jpg)
 
 ## Footnotes
 [^1]: Component API available at: https://mui.com/
