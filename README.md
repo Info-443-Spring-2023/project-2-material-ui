@@ -228,9 +228,16 @@ Material UI has many different tests including unit tests, integration tests, en
 ## Applied Perspective
 
 **Detail which concerns are relevant to your particular system—how does your perspective apply to your chosen software? You should use the listed concerns in the course text as a starting point (you don't need to address all of the concerns in the book; pick 2 or 3 most relevant ones and discuss those explicitly).**
- - Evolution: Magnitude/dimensions of change: Since its creation, Material-UI has undergone significant changes. The development team has made updates to improve the library's performance, features, and maintainability. Some of these changes include transitions from class-based to functional components and Hooks and incorporation of TypeScript, reflecting the evolution in the broader JavaScript ecosystem. Likelihood/timescale for change: Material-UI, as an open-source project, is updated frequently. Looking at the project’s history, major versions have been released approximately every two years. The project follows semantic versioning, which helps users to anticipate the impact of updates. Changes driven by external factors: The primary external factor driving changes in Material-UI is the development of React and JavaScript as a whole. Changes in the underlying technologies necessitate updates in Material-UI to maintain compatibility and to leverage new features and improvements. User feedback and trends in web design also play a role in shaping the library's evolution.
-- Security - further implementation needed.11
-- Performance - further implementation needed.
+ - There are a couple of usability concerns specific to Material-UI. These concerns stem from the nature of the software system, being a user interface library for web development, and the expectations that come with it.
+
+ - 1. Learnability
+ - Material-UI aims to make web development faster and easier, and this includes making the library itself easy to learn. The architecture of the system plays a key role in this aspect. The documentation of the project, which is a reflection of the system's architecture, must be easy to understand to promote learnability. Material-UI has adopted a modular design where components are self-contained and reusable, which promotes learnability by reducing the number of concepts developers need to understand at once.
+
+- 2. Flexibility
+- The software must be flexible to cater to various user requirements. The architecture of Material-UI allows for the customization of components. This flexibility is ingrained into the system's architecture by exposing APIs to alter the visual and functional aspects of components.
+
+- 3. Accessibility
+- The architecture of the system needs to ensure that the components provided by Material-UI are accessible. The system achieves this by adopting WAI-ARIA (Web Accessibility Initiative – Accessible Rich Internet Applications) standards and providing features like keyboard navigation and text-to-speech capability.
 
 
 
@@ -279,8 +286,8 @@ Your will identify 4 or more design patterns (e.g., OOP Patterns) that are are u
  Decorator Pattern involves dynamically adding behaviors or responsibilities to an object by wrapping it with another object of the same interface.
  In Material-UI, High order components or HOCs are used to inject certain features or behaviors into components, such as handling theming, managing state, or providing access to certain context or data. These HOCs can be applied to existing components to extend their capabilities without modifying their underlying implementation. This promotes code reusability and modularity by separating concerns and allowing components to be composed with different functionalities. While the concept of enhancing components through HOCs shares some similarities with the Decorator Pattern, it is important to note that the implementation in Material-UI may not strictly adhere to the full structure and principles of the Decorator Pattern.
 
- ### Factory Pattern
- This pattern is used in the styles portion of the system. Material-UI needs to create styles that can be easily tweaked based on themes, props, and states. To solve this problem, Material-UI uses a factory function to create styles. In essence, the function takes a theme and returns a style object that depends on that theme. This effectively allows the creation of custom styles based on different themes using the same factory function.
+ ### Observer Pattern
+ Context: This pattern is used in Material-UI's theme provider. The ThemeProvider allows child components to react to theme changes. Problem: The objective is to create a system where when one object changes state, all its dependents are notified and updated automatically. In Material-UI, this is particularly useful for theme changes to be propagated throughout the app's components. Solution: Material-UI's ThemeProvider uses the Context API to make the theme available to all child components. When a theme change is triggered, all components that consume the context will re-render with the new theme. This closely follows the Observer Pattern where the ThemeProvider is the Subject and the child components are the Observers.
 
 
 
@@ -303,6 +310,15 @@ Material-UI adheres to the Open/Closed Principle by providing an extensible fram
 Material UI follows the Single Responsibility Principle by ensuring that each of the React components they provide have one and only one well-defined purpose within the system. The MUI components are broken down into smaller and more basic components to achieve a single goal or represent a certain element in the user interface [^7]. They also provide clear and consistent interfaces so that developers can easily understand what each component does and how they can use it. As a result, this type of approach helps to make the components more modular so that they are easier to reuse and combine to create more complex and customized components. It also helps make the code to maintain, understand, and improve in the future.
 
 Examples: Instead of having a single `Card` component handle all the the elements involved with creating a card, they break it down into smaller individual components such as the `CardHeader`, `CardContent`, and `CardMedia` to represent different parts of the content displayed on a card. This can be further extended by combining it with other components like `Typography` and `Collapse` to create even more complex UI components.
+
+### Liskov Substitution Principle (LSP)
+LSP states that functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it. This ensures that a derived class will not cause the system to behave differently, eliminating the possibility of errors in the system. After exploring the codebase of Material-UI, it can be concluded that the project adheres to the Liskov Substitution Principle. A specific example can be found in the Button component. This component extends from the ButtonBase component, inheriting properties and methods. Yet, when used in the context of the ButtonBase, it doesn't alter the behavior of the system. This respects LSP because we can substitute ButtonBase with Button and the system will behave as expected.
+
+### Interface Segregation Principle (ISP)
+ISP suggests that clients should not be forced to depend on interfaces they do not use. This principle is all about business value and code organization by focusing on the role of an interface. In the context of Material-UI, ISP is adhered to effectively. Material-UI follows a modular design structure and the components are segregated properly based on their responsibilities. For instance, TextField and Select components have their own specific implementations and are not bloated with unnecessary methods. This clear segregation provides developers the flexibility to import and use only the components and their associated interfaces that are necessary for their implementation, thus adhering to the ISP.
+
+### Dependency Inversion Principle (DIP)
+DIP posits that high-level modules should not depend on low-level modules. Both should depend on abstractions. Similarly, abstractions should not depend on details; details should depend on abstractions. Material-UI also follows this principle quite well. All the components are written in such a way that they depend on abstractions rather than concrete implementations. A prime example can be seen in the theme implementation of Material-UI. All the components depend on the abstract theme provided by the ThemeProvider and not on the specific implementation of the theme. This allows developers to create their own themes without having to modify the internal component code.
 
 ## System Improvement
 
