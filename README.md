@@ -310,6 +310,19 @@ Around 4-5 refactoring steps (at the scope defined by Martin Links to an externa
 A larger reorganization (e.g., at the module level—breaking up a module into smaller pieces, or moving functionality between modules) can "count double" in terms of refactorings. So doing 2-3 of those would be sufficient.
 You will need to justify why each refactoring is needed and an improvement on the architecture. Consider perhaps places that the system could better follow the design principles you discussed in the previous section.
 
+### Refractoring
+Refactored Box, Card, and the className components. 
+* For `Box.js` and `Box.test.js`, the `ClassNameGenerator` import was optimized to import from the `@mui/utils` package. Originally, the import was importing the `className` component. 
+* The `className` component was removed because of redundancy. The component file only had 1 file and 1 import statement, it was also only referenced by `Box` and `Box test`. 
+* The `Card` component had a couple refactoring steps. 
+  * Instead of importing all the modules with `import * as module`, we switched to using named imports (import { module }). This change improves code readability and maintainability by explicitly stating which modules are being imported and used. It also helps to avoid potential naming conflicts and makes it easier to understand the dependencies of the module. 
+  * We removed unused imports such as `chainPropTypes`, `styled`, `useThemeProps`, and `unstable_composeClasses`. This cleanup improves the codebase by eliminating unnecessary dependencies and reducing potential confusion or conflicts. 
+  * The `styled` function is now imported from the `@mui/system` package. This is because the styled function was moved to the `@mui/system` package in recent versions of Material-UI. 
+  * We created a separate `CardRoot` component that extends the `Paper` component and overrides its styles. This change follows the principle of separation of concerns, allowing the `Card` component to focus on its specific functionality while delegating the style-related concerns to the `CardRoot` component. 
+  * Additionally in the refactored code, the `forwardRef` function is placed inside the `Card` component definition for better code organization and readability. This ensures that the `Card` component is defined as a `forward-ref` component and clarifies the intent of using the `ref` prop. 
+  * The `sx` prop has also been updated to import `PropTypes` from the `prop-types` package and added to the Card `propTypes` definition. This ensures that the `sx` prop is properly type-checked and documented. 
+  * In the `useUtilityClasses` hook, the slot value for the root has been changed from an array ['root'] to a string 'root' for consistency. The `slot` property in styled expects a string value representing the slot name.
+  * In the `useThemeProps` call, the `name` property has been updated to `MuiCard` to align with the component name. This is a convention used by Material-UI for theme-related functionality. In the `CardRoot` component, the `ref` prop has been moved outside the `ownerState` spread to separate it from the other props. This ensures that the `ref` is correctly passed to the underlying `Paper` component.
 
 ### Bug Fix: [Stack] misalignment
 **Github Issue:** https://github.com/mui/material-ui/issues/37381
