@@ -245,6 +245,7 @@ Material UI has many different tests including unit tests, integration tests, en
 * For example, from an Evolution perspective, you might "Characterize the Evolution Needs" and "Assess the Current Ease of Evolution".
 
 1. Usability Evaluation: Conduct a usability evaluation of specific Material-UI components or the overall UI design. This can involve tasks such as heuristic evaluations, cognitive walkthroughs, or usability testing with representative users. The goal is to identify any usability issues, pain points, or areas for improvement in terms of user interaction, navigation, visual design, or responsiveness.
+2. User Flow Analysis: Analyze the user flows and interactions within the Material-UI components used in your application. Identify the key user tasks, actions, and navigation patterns. Create user flow diagrams or storyboards to visualize the sequences of screens and interactions, evaluating the ease of use and clarity of the user journey.
 
 **Activity 1: Usability Evaluation of Material UI's Architecture**
 
@@ -262,9 +263,23 @@ As Rozanski mentions in their book, the usability perspective focuses on evaluat
   - Helps developers follow the main architectural principle that Rozanski highlights in [^10], which is to keep the implementation of the interface separate from the functional processing so that it is easier to make changes quickly and easily in the future.
 
 - Though they do provide extensive documentation and guidelines on how to use the API and the overall architecture is based on common patterns and styles, it is clear that many of it has been designed with the assumption that the developers already have some background knowledge. In particular, they assume that developers using the library are familiar working with React, component-based architectures, design principles, and common programming concepts. So it might prove to be challenging to use for new developers with less expertise and experience to work with initially, which is one of the common problems that Rozanski points out in [^10].
+   
+**Activity 2: User Flow Analysis of Material UI's Website**
 
+![User Storyboard](img/User-Flow-Analysis.jpg)
 
-2. User Flow Analysis: Analyze the user flows and interactions within the Material-UI components used in your application. Identify the key user tasks, actions, and navigation patterns. Create user flow diagrams or storyboards to visualize the sequences of screens and interactions, evaluating the ease of use and clarity of the user journey.
+The first step in identifying key user tasks is to understand the main objectives of the application. The user here would be web developers, front end developers, or react developers who are looking for an UI framework that is compatible with React.
+User tasks: 
+- Component Exploration and Selection: One of the key user tasks for the Material-UI package is to explore the available components and select the ones that best suit their needs. Users may need to browse through the documentation, view examples, and understand the usage guidelines for each component. The actions involved in this task include searching for specific components, reading documentation, viewing demos, and identifying the appropriate component for integration into their project.
+
+- Installation and Setup: Once users have selected the desired components, the next task is to install and set up the Material-UI package in their development environment. This task involves actions such as installing the package through package managers like npm or yarn, configuring the necessary dependencies, and integrating the components into the project's codebase. The ease of use in terms of installation instructions, clear documentation, and smooth integration can greatly impact the user experience.
+
+- Customization and Styling: Another important task for users is to customize and style the Material-UI components to align with the visual design and branding of their application. This task requires actions like modifying component properties, applying custom styles, and handling component interactions. The ease of use in terms of customization options, theming support, and clear guidelines for styling contribute to a positive user experience.
+
+Next, we need to determine the actions users need to take to complete each task. From the user's perspective, the website has seamless getting started steps that are easy to follow and copy and pastable. The user can then click on specific components to read more. These documentation pages often includes copyable code chunks and interactive demo code chunks for the developer to play around with and see how it would display before implementation. 
+
+Users are able to navigate between different documentation using the navigation bar that is always present on the left with highlighted bold text to contrast the background. It is also intuitively designed to include clear categorization of components, help guides, and customizations. The main navigation menu and breadcrumbs also help users understand their current location within the website.
+
 
 ## Identify Styles & Patterns Used
 
