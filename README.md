@@ -292,7 +292,6 @@ Your will identify 4 or more design patterns (e.g., OOP Patterns) that are are u
 
 
 ### Composite Design pattern
-
 The composite design pattern is a pattern that lets you use tree structures to represent hierarchies and treat both individual objects and object compositions the same [^5][^6].
 
 Material UI uses the composite design pattern to create their components because they let you treat all individual objects and object compositions the same. For example, to create a `List` component you can compose a list by passing in various `ListItem`s as children. These list items can have any number of other components contained within it like a `ListItemAvatar`, `ListItemText`, or `ListItemButton` to create a tree hierarchy. But despite the fact that there could be many different subtrees with different structures in the list, the `List` component will still treat all of its `ListItem`s as an individual object instead of a composition of multiple different objects.
@@ -306,7 +305,6 @@ Material UI also does a very good job in creating components that support other 
 Material-UI adheres to the Open/Closed Principle by providing an extensible framework of reusable components that can be customized and extended through props. Instead of modifying the internal implementation, developers can leverage props to tailor the appearance, behavior, and functionality of components to fit their specific requirements. This approach promotes code reusability, maintainability, and modularity, allowing for the addition of new features without modifying the existing codebase.
 
 ### Single Responsibility Principle (SRP)
-
 Material UI follows the Single Responsibility Principle by ensuring that each of the React components they provide have one and only one well-defined purpose within the system. The MUI components are broken down into smaller and more basic components to achieve a single goal or represent a certain element in the user interface [^7]. They also provide clear and consistent interfaces so that developers can easily understand what each component does and how they can use it. As a result, this type of approach helps to make the components more modular so that they are easier to reuse and combine to create more complex and customized components. It also helps make the code to maintain, understand, and improve in the future.
 
 Examples: Instead of having a single `Card` component handle all the the elements involved with creating a card, they break it down into smaller individual components such as the `CardHeader`, `CardContent`, and `CardMedia` to represent different parts of the content displayed on a card. This can be further extended by combining it with other components like `Typography` and `Collapse` to create even more complex UI components.
