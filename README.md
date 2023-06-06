@@ -209,7 +209,10 @@ Utils:
 - useMediaQuery() – CSS media query hook that allows components to be rendered depending on whether the given query matches
 
 ### Visual Representation
-...
+The following is a UML component diagram showing the relationship between the different architechtural components in the material ui system. The arrows represent the relationships between nested components.
+
+
+![UML component diagram](img/project2_uml.drawio.png)
 
 ### Source Code Structure
 - Material-UI is a popular React UI framework that implements Google's Material Design. It includes a variety of pre-built components like buttons, cards, dialogs, forms, and more, making it easier to build beautiful and consistent interfaces.
