@@ -464,7 +464,7 @@ The colors that we have included:
 - blue-yellow color blindness
   - `tritanopiaPalette`
 
-This small feature improvement of adding this inclusive color scheme folder will help developers use this folder in the future for a more inclusive color scheme.
+This small feature improvement of adding this inclusive color scheme folder will help developers use this folder in the future for a more inclusive color scheme. [^12]
 
 ### Test Cases
 For the test case, I focused on the Select function, which has the automated test cases stored in the Select.test.js file.
@@ -551,3 +551,5 @@ Reason: There could be cases where the Select component does not have any child 
 [^10]: Usability Perspective: https://learning.oreilly.com/library/view/software-systems-architecture/9780132906135/ch29.html#:-:text=The%20Usability%20Perspective
 
 [^11]: Responsive UI Components: https://mui.com/material-ui/guides/responsive-ui/
+
+[^12]: Web Content Accessibility Guidelines: https://www.w3.org/WAI/standards-guidelines/wcag/
