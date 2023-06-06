@@ -455,7 +455,16 @@ The `Stack.test.js` file in the `@mui/system` package was also updated to make s
 ![alignment bug test cases passing](img/bug-fix-tests.jpg)
 
 ### Feature Improvement
-...
+Color is a important aspect of usability that allows for inclusivity and accessibility. To encourage more inclusive colors on Material-UI and to help to developers with futher process of implementing optimized color schemes for individuals with color blindness, we will implement a specific file titles `colorInclusivePalette.js` for this color scheme. 
+
+The colors that we have included:
+- Red-green color blindness
+  - `protanopiaPalette`
+  - `deuteranopiaPalette`
+- blue-yellow color blindness
+  - `tritanopiaPalette`
+
+This small feature improvement of adding this inclusive color scheme folder will help developers use this folder in the future for a more inclusive color scheme.
 
 ### Test Cases
 For the test case, I focused on the Select function, which has the automated test cases stored in the Select.test.js file.
