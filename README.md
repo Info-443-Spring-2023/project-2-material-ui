@@ -239,7 +239,7 @@ Material UI has many different tests including unit tests, integration tests, en
 ## Applied Perspective
 
 ### Architectural Perspective
-We have chosen the Usability perspective from the Rozanski catalogue. This perspective considers how the architecture of a system impacts its usability, focusing on end users and UI design. Using this perspective we want to ensure that Material UI supports qualities such as intuitive nagivation, efficient workflows, and user satisfaction. In the following text we will analyze how usability is incorporated into the system's architechture.
+We have chosen the Usability perspective from the Rozanski catalog. This perspective considers how the architecture of a system impacts its usability, focusing on end users and UI design. Using this perspective we want to ensure that Material UI supports qualities such as intuitive nagivation, efficient workflows, and user satisfaction. In the following text we will analyze how usability is incorporated into the system's architechture.
 
 ### Concerns relevant to System
 **Detail which concerns are relevant to your particular system—how does your perspective apply to your chosen software? You should use the listed concerns in the course text as a starting point (you don't need to address all of the concerns in the book; pick 2 or 3 most relevant ones and discuss those explicitly).**
@@ -326,6 +326,8 @@ The composite design pattern is a pattern that lets you use tree structures to r
 
 Material UI also does a very good job in creating components that support other systems using the composite design pattern. This is because they prioritize creating consistent and basic low-level components so that they fully maximize their ability to use composition with their components for more complex tree structures [^7].
 
+### Abstract Factory pattern
+The Abstract Factory pattern involves families of related product objects without instantiating the classes directly. Material UI implements this design pattern through the different theme providers. The `ThemeProvider` interface is the abstract factory interface in Material-UI as it declares methods for creating different types of theme objects. The problem is that the project needs to supports various themes for the components. Therefore, `ThemeProvider` ensures that all contrete theme factories adhere to a common set of creation methods by creating multiple concrete factory classes such as `createMuiTheme` and `createTheme`. 
 
 ## Architectural Assessment
 
