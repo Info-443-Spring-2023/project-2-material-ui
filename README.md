@@ -239,8 +239,7 @@ Material UI has many different tests including unit tests, integration tests, en
 ## Applied Perspective
 
 ### Architectural Perspective
-
-...
+We have chosen the Usability perspective from the Rozanski catalogue. This perspective considers how the architecture of a system impacts its usability, focusing on end users and UI design. Using this perspective we want to ensure that Material UI supports qualities such as intuitive nagivation, efficient workflows, and user satisfaction. In the following text we will analyze how usability is incorporated into the system's architechture.
 
 ### Concerns relevant to System
 **Detail which concerns are relevant to your particular system—how does your perspective apply to your chosen software? You should use the listed concerns in the course text as a starting point (you don't need to address all of the concerns in the book; pick 2 or 3 most relevant ones and discuss those explicitly).**
